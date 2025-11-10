@@ -1,0 +1,22 @@
+<div id="task-view">
+    <%= erb :_push_button, locals: { caption: 'Start/Stop', onclick: "toggleTask('#{task.id}')" }%>
+    <pre><%= task.description %></pre>
+    <pre>Total time spent: <%= task.duration %></pre>
+    <% task.time_spans.each do |time_span| %>
+        <pre><%= time_span.debug %></pre>
+    <% end %>
+</div>
+
+<script>
+    let toggleTask = (task_id) => {
+        fetch(`/task/${task_id}/toggle.json`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}, 
+        }).then(res => {
+            console.log(res)
+            if (res.status == 200) {
+                window.location.reload()
+            }
+        })
+    }
+</script>

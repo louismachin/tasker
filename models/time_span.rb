@@ -1,6 +1,6 @@
 class TimeSpan
     def initialize(from_time, to_time = nil)
-        @from_time = Time.parse(from_time)
+        @from_time = from_time.is_a?(Time) ? from_time : Time.parse(from_time)
         @to_time = to_time == nil ? nil : Time.parse(to_time)
     end
 

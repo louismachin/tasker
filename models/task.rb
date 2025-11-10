@@ -30,13 +30,17 @@ class Task
         return times.flatten.compact.max
     end
 
+    def duration
+        @time_spans.sum { |time_span| time_span.duration }
+    end
+
     def toggle
-        if @time_spans.last.finished?
-            # create new time span
-            @time_spans << TimeSpan.new(Time.now)
-        else
+        if @time_spans.any? && @time_spans.last.active?
             # end current latest time span
             @time_spans.last.end
+        else
+            # create new time span
+            @time_spans << TimeSpan.new(Time.now)
         end
         return @time_spans.last
     end

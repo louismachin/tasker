@@ -1,0 +1,9 @@
+<div id="task-list">
+    <% (@sorted_tasks * 10).each do |task| %>
+        <div class="task">
+            <a href="/task/<%= task.id %>">
+                <%= task.description %>
+            </a>
+        </div>
+    <% end %>
+</div>
