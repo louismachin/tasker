@@ -30,7 +30,7 @@ class TimeSpan
     end
 
     def to_json
-        return { from: self.from, to: self.to, duration: self.duration, }
+        return { from: self.from, to: self.to, duration: self.duration, }.to_json
     end
 
     def debug
