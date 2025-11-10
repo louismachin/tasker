@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<%= erb :_head, locals: { copy: @copy } %>
+
+<style>
+    #scroller-tool {
+        display: grid;
+        min-width: 800px;
+        min-height: 500px;
+        grid-template-columns: 3fr 5fr;
+        grid-template-rows: 64px 1fr;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    #scroller-tool > div {
+        border: 1px solid black;
+    }
+
+    #task-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px;
+        height: calc(500px - 64px);
+        overflow-y: scroll;
+    }
+
+    #task-list .task {
+        min-height: 96px;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <div id="wrapper">
+        <div id="scroller-tool">
+            <div id="task-list-header"></div>
+            <div id="task-header"></div>
+            <div id="task-list">
+                <% (@sorted_tasks * 10).each do |task| %>
+                    <div class="task">
+                        <%= task.description %>
+                    </div>
+                <% end %>
+            </div>
+            <div id="task-view">
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>

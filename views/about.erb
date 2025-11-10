@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<%= erb :_head, locals: { copy: @copy } %>
+
+<body>
+    <div id="wrapper">
+        <div id="page">
+            <div class="about">
+                <span class="mb">
+                    <p><b><%= @copy[:title] %></b></p>
+                    <p><%= @copy[:licensee] %></p>
+                </span>
+                <img src="img/orb.jpg">
+                <span>
+                    <p>Developed by</p>
+                    <p><b>Shukra Software Ltd.</b></p>
+                    <p><a href="https://shukra.dev">https://shukra.dev</a></p>
+                </span>
+            </div>
+            <button onclick="window.location = '/'">Back</button>
+        </div>
+    </div>
+</body>
+
+<style>
+    .about {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .about img {
+        width: 80px;
+        padding: 4px;
+        border: 1px solid black;
+    }
+
+    .about span {
+        text-align: center;
+    }
+
+    .about span p {
+        line-height: 0.5rem;
+    }
+</style>
+
+</html>

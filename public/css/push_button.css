@@ -1,0 +1,40 @@
+button.push {
+    font-size: 16px;
+    border: 1px solid #9999ac;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0;
+    padding-top: 5px;
+    margin-top: 0px;
+    background: #ebebf6;
+}
+
+button.push:hover {
+    background: #c2b3ff;
+}
+
+button.push:hover span {
+    background: #e0d9ff;
+}
+
+button.push span {
+    display: block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 0px;
+    background: white;
+    color: black;
+    transform: translateY(-5px);
+}
+
+button.push:active {
+    padding-top: 0;
+    margin-top: 5px;
+}
+
+button.push:active span {
+    transform: translateY(0);
+}

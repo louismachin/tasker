@@ -1,0 +1,15 @@
+port:
+  4599
+title:
+  Example App
+licensee:
+  Example Client
+cookie_name:
+  _example_shukra
+users:
+  test_user:
+    password:
+      'test_pass'
+    api_keys:
+      - '123'
+      - '456'
