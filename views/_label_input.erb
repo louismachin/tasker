@@ -1,0 +1,42 @@
+<div class="label-input">
+    <p><%= label %></p>
+    <% if defined? options %>
+        <select name="<%= id %>" id="<%= id %>">
+            <% for option in options do %>
+                <option value="<%= option %>"><%= option %></option>
+            <% end %>
+        </select>
+    <% elsif defined? type %>
+        <% place = defined?(placeholder) ? placeholder : '' %>
+        <input type="<%= type %>" id="<%= id %>" placeholder="<%= place %>">
+    <% else %>
+        <% place = defined?(placeholder) ? placeholder : '' %>
+        <input id="<%= id %>" placeholder="<%= place %>">
+    <% end %>
+</div>
+
+<style>
+    .label-input {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid rgba(0, 0, 0, 0.35);
+        border-radius: 4px;
+    }
+
+    .label-input * {
+        margin: 0;
+        padding: 8px;
+    }
+
+    .label-input p {
+        border-right: 1px solid rgba(0, 0, 0, 0.35);
+        min-width: 30%;
+        font-size: 0.8rem;
+    }
+
+    .label-input input, .label-input select {
+        background-color: white;
+        width: 100%;
+        border: none !important;
+    }
+</style>

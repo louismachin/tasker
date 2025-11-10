@@ -1,0 +1,39 @@
+<div id="task-view">
+    <div id="new-project-form">
+        <%= erb :_label_input, locals: { id: 'name-field', label: 'Name' } %>
+        <div class="buttons">
+            <%= erb :_push_button, locals: { caption: 'Submit', onclick: 'submitProject()' } %>
+            <%= erb :_nav_button, locals: { caption: 'Cancel', onclick: 'cancelForm()' } %>
+        </div>
+    </div>
+</div>
+
+<script>
+    let cancelForm = () => window.location = '/'
+
+    let submitProject = () => {
+        const name = document.getElementById('name-field').value
+        fetch('/project/new', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify({
+                name: name,
+            })
+        }).then(res => {
+            if (res.status == 200) {
+                document.location.href = '/'
+            } else {
+                window.location.reload()
+            }
+        })
+    }
+</script>
+
+<style>
+    #new-project-form {
+        display: flex;
+        flex-direction: column;
+        padding: 32px;
+        gap: 16px;
+    }
+</style>

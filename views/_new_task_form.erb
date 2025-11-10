@@ -1,0 +1,46 @@
+<div id="task-view">
+    <div id="new-task-form">
+        <%= erb :_label_input, locals: { id: 'name-field', label: 'Name' } %>
+        <%= erb :_label_input, locals: { id: 'description-field', label: 'Description' } %>
+        <% project_names = projects.map { |project| project.name } %>
+        <%= erb :_label_input, locals: { id: 'project-field', label: 'Project', options: project_names } %>
+        <div class="buttons">
+            <%= erb :_push_button, locals: { caption: 'Submit', onclick: 'submitTask()' } %>
+            <%= erb :_nav_button, locals: { caption: 'Cancel', onclick: 'cancelForm()' } %>
+        </div>
+    </div>
+</div>
+
+<script>
+    let cancelForm = () => window.location = '/'
+
+    let submitTask = () => {
+        const name = document.getElementById('name-field').value
+        const description = document.getElementById('description-field').value
+        const project_name = document.getElementById('project-field').value
+        fetch('/task/new', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify({
+                name: name,
+                description: description,
+                project_name: project_name,
+            })
+        }).then(res => {
+            if (res.status == 200) {
+                document.location.href = '/'
+            } else {
+                window.location.reload()
+            }
+        })
+    }
+</script>
+
+<style>
+    #new-task-form {
+        display: flex;
+        flex-direction: column;
+        padding: 32px;
+        gap: 16px;
+    }
+</style>

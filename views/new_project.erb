@@ -9,11 +9,7 @@
             <div id="task-list-header"></div>
             <div id="task-header"></div>
             <%= erb :_task_list, locals: { tasks: @sorted_tasks } %>
-            <% if @task %>
-                <%= erb :_task_view, locals: { task: @task } %>
-            <% else %>
-                <%= erb :_dash_view %>
-            <% end %>
+            <%= erb :_new_project_form %>
         </div>
     </div>
     
