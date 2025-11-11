@@ -1,5 +1,4 @@
 <div id="task-view">
-    <%= erb :_push_button, locals: { caption: 'Start/Stop', onclick: "toggleTask('#{task.id}')" }%>
     <p><%= task.description %></p>
     <%= erb :_task_time_spans, locals: { task: task } %>
 </div>
@@ -14,8 +13,10 @@
 </style>
 
 <script>
-    let toggleTask = (task_id) => {
-        fetch(`/task/${task_id}/toggle.json`, {
+    document.getElementById('toggle-task').onclick = () => toggleTask()
+
+    let toggleTask = () => {
+        fetch(`/task/<%= task.id %>/toggle.json`, {
             method: 'GET',
             headers: {'Content-Type': 'application/json'}, 
         }).then(res => {

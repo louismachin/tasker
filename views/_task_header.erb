@@ -3,14 +3,20 @@
     <div id="header-task-name"><p><%= task.name_preview %></p></div>
     <div id="header-current-track"><p>CURRENT TRACK</p></div>
     <div id="header-duration-time"><p><%= formatted_minutes(task.duration) %></p></div>
-    <div id="header-start-stop"><img src="/img/orb.jpg"></div>
+    <div id="header-start-stop">
+        <% if task.active? %>
+            <img id="toggle-task" src="/svg/stop.svg">
+        <% else %>
+            <img id="toggle-task" src="/svg/play.svg">
+        <% end %>
+    </div>
 </div>
 
 <style>
     #task-header {
         display: grid;
         padding: 8px 16px;
-        grid-template-columns: fit-content 1fr 72px;
+        grid-template-columns: 1fr 1fr 72px;
         grid-template-rows: 4fr 5fr;
         grid-template-areas:
             "task-id current-track start-stop"
@@ -26,6 +32,7 @@
         margin: 0;
         font-size: 0.9rem;
         color: white;
+        white-space: nowrap;
     }
 
     #header-task-id {
@@ -71,5 +78,7 @@
 
     #header-start-stop img {
         height: 48px;
+        filter: invert(100%);
+        cursor: pointer;
     }
 </style>

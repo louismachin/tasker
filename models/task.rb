@@ -49,8 +49,12 @@ class Task
         @time_spans.sum { |time_span| time_span.today_duration }
     end
 
+    def active?
+        return @time_spans.any? && @time_spans.last.active?
+    end
+
     def toggle
-        if @time_spans.any? && @time_spans.last.active?
+        if self.active?
             # end current latest time span
             @time_spans.last.end
         else
