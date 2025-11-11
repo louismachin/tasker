@@ -26,6 +26,10 @@
     background: #2FB8BA;
 }
 
+#scroller-tool > div.purple {
+    background: #6640fe;
+}
+
 #task-list-header {
     border-right: 1px solid #9999ac;
 }
