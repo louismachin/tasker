@@ -53,6 +53,10 @@ class Task
         return @time_spans.any? && @time_spans.last.active?
     end
 
+    def started?
+        return @time_spans.any?
+    end
+
     def toggle
         if self.active?
             # end current latest time span
