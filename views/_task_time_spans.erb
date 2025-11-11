@@ -1,19 +1,21 @@
 <div id="time-spans-wrapper">
-    <div><p class="label">Duration</p></div>
-    <div><p class="label">From</p></div>
-    <div><!-- dash --></div>
-    <div><p class="label">To</p></div>
-    <% task.time_spans.each do |time_span| %>
-        <% next if time_span.active? %>
-        <% next if time_span.duration == 0 %>
-        <div><p class="duration"><%= formatted_minutes(time_span.duration) %></p></div>
-        <div><p class="time"><%= time_span.from.strftime('%H:%M') %></p></div>
-        <div class="emdash"><p class="label">&mdash;</p></div>
-        <div><p class="time"><%= time_span.to.strftime('%H:%M') %></p></div>
-    <% end %>
-    <% if task.time_spans.size > 1 %>
-        <!-- Total -->
-        <!-- <div><p class="duration"><%= formatted_minutes(task.duration) %></p></div> -->
+    <% if task.time_spans.any? { |ts| ts.finished? } %>
+        <div><p class="label">Duration</p></div>
+        <div><p class="label">From</p></div>
+        <div><!-- dash --></div>
+        <div><p class="label">To</p></div>
+        <% task.time_spans.each do |time_span| %>
+            <% next if time_span.active? %>
+            <% next if time_span.duration == 0 %>
+            <div><p class="duration"><%= formatted_minutes(time_span.duration) %></p></div>
+            <div><p class="time"><%= time_span.from.strftime('%H:%M') %></p></div>
+            <div class="emdash"><p class="label">&mdash;</p></div>
+            <div><p class="time"><%= time_span.to.strftime('%H:%M') %></p></div>
+        <% end %>
+        <% if task.time_spans.size > 1 %>
+            <!-- Total -->
+            <!-- <div><p class="duration"><%= formatted_minutes(task.duration) %></p></div> -->
+        <% end %>
     <% end %>
 </div>
 
