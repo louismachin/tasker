@@ -1,2 +1,56 @@
 <div id="task-list-header" class="grey">
+    <div id="header-buttons"><img src="/img/orb.jpg"></div>
+    <div id="header-total-today"><p>TOTAL TODAY</p></div>
+    <div id="header-duration-today"><p><%= formatted_minutes(get_today_duration) %></p></div>
 </div>
+
+<style>
+    #task-list-header {
+        display: grid;
+        padding: 8px 16px;
+        grid-template-columns: 1fr fit-content;
+        grid-template-rows: 4fr 5fr;
+        grid-template-areas:
+            "header-buttons header-total-today"
+            "header-buttons header-duration-today";
+    }
+
+    #task-list-header > div {
+        display: flex;
+        align-items: center;
+    }
+
+    #task-list-header p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: white;
+    }
+
+    #header-total-today {
+        grid-area: header-total-today;
+        justify-content: right;
+    }
+
+    #header-total-today p {
+        opacity: 0.6;
+    }
+
+    #header-duration-today {
+        grid-area: header-duration-today;
+        justify-content: right;
+    }
+
+    #header-duration-today p {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    #header-buttons {
+        grid-area: header-buttons;
+        justify-content: left;
+    }
+
+    #header-buttons img {
+        height: 48px;
+    }
+</style>

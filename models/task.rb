@@ -30,6 +30,11 @@ class Task
         return self.id.sub('TASK_', '')
     end
 
+    def name_preview
+        return @name if @name.size < 32
+        return @name[0, 30] + '...'
+    end
+
     def latest_time # for relevance sorting
         return @created_at if @time_span_count == 0
         times = [@created_at] + @time_spans.map { |ts| [ts.from, ts.to] }

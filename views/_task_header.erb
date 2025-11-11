@@ -1,5 +1,75 @@
 <div id="task-header" class="blue">
-    <%= task.uri_id %>
-    <%= task.name %>
-    <%= task.duration %>
+    <div id="header-task-id"><p>#<%= task.uri_id %></p></div>
+    <div id="header-task-name"><p><%= task.name_preview %></p></div>
+    <div id="header-current-track"><p>CURRENT TRACK</p></div>
+    <div id="header-duration-time"><p><%= formatted_minutes(task.duration) %></p></div>
+    <div id="header-start-stop"><img src="/img/orb.jpg"></div>
 </div>
+
+<style>
+    #task-header {
+        display: grid;
+        padding: 8px 16px;
+        grid-template-columns: fit-content 1fr 72px;
+        grid-template-rows: 4fr 5fr;
+        grid-template-areas:
+            "task-id current-track start-stop"
+            "task-name duration-time start-stop";
+    }
+
+    #task-header > div {
+        display: flex;
+        align-items: center;
+    }
+
+    #task-header p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: white;
+    }
+
+    #header-task-id {
+        grid-area: task-id;
+    }
+
+    #header-task-id p {
+        opacity: 0.6;
+    }
+
+    #header-task-name {
+        grid-area: task-name;
+    }
+
+    #header-task-name p {
+        font-size: 1.2rem;
+        opacity: 0.8;
+    }
+
+    #header-current-track {
+        grid-area: current-track;
+        justify-content: right;
+    }
+
+    #header-current-track p {
+        opacity: 0.6;
+    }
+
+    #header-duration-time {
+        grid-area: duration-time;
+        justify-content: right;
+    }
+
+    #header-duration-time p {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    #header-start-stop {
+        grid-area: start-stop;
+        justify-content: right;
+    }
+
+    #header-start-stop img {
+        height: 48px;
+    }
+</style>
