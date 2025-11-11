@@ -1,14 +1,21 @@
 <div id="task-list-header" class="grey">
-    <div id="header-buttons"><img src="/img/orb.jpg"></div>
+    <div id="header-buttons">
+        <img id="home-btn" src="/svg/clock.svg">
+        <img id="settings-btn" src="/svg/settings.svg">
+    </div>
     <div id="header-total-today"><p>TOTAL TODAY</p></div>
     <div id="header-duration-today"><p><%= formatted_minutes(get_today_duration) %></p></div>
 </div>
+
+<script>
+    document.getElementById('home-btn').onclick = () => { window.location = '/' }
+    document.getElementById('settings-btn').onclick = () => { window.location = '/settings' }
+</script>
 
 <style>
     #task-list-header {
         display: grid;
         padding: 8px 16px;
-        grid-template-columns: 1fr fit-content;
         grid-template-rows: 4fr 5fr;
         grid-template-areas:
             "header-buttons header-total-today"
@@ -48,9 +55,12 @@
     #header-buttons {
         grid-area: header-buttons;
         justify-content: left;
+        gap: 16px;
     }
 
     #header-buttons img {
-        height: 48px;
+        height: 32px;
+        filter: invert(100%);
+        cursor: pointer;
     }
 </style>

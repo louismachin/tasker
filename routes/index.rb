@@ -6,6 +6,10 @@ get '/' do
     erb :dashboard, locals: { copy: @copy }
 end
 
+get '/settings' do
+    redirect '/'
+end
+
 get '/help' do
     @copy = $env.default_copy
     erb :help, locals: { copy: @copy }
