@@ -1,6 +1,6 @@
 <div id="task-list" class="lightgrey">
     <p class="task-history">TASK HISTORY</p>
-    <% (@sorted_tasks * 10).each do |task| %>
+    <% @sorted_tasks.each do |task| %>
         <%= erb :_task_preview, locals: { task: task } %>
     <% end %>
 </div>
@@ -23,5 +23,49 @@
         padding: 16px;
         overflow-y: scroll;
         scrollbar-width: none;
+    }
+
+    /* for task previews: */
+
+    #task-list .task-preview {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: min-content 1fr;
+        grid-template-areas:
+            "preview-id preview-duration"
+            "preview-name preview-name";
+        background: white;
+        border-radius: 4px;
+        flex-direction: column;
+        cursor: pointer;
+        height: fit-content;
+        padding: 16px;
+        grid-gap: 8px;
+        font-size: 0.9rem;
+        color: #9999ac;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    .task-preview > div {
+        display: flex;
+        align-items: center;
+    }
+
+    .task-preview.active {
+        border: 1px solid #2FB8BA;
+    }
+
+    .task-preview .preview-name {
+        color: black;
+    }
+
+    .task-preview .preview-duration {
+        justify-content: right;
+        font-weight: bold;
+        color: black;
+    }
+
+    .task-preview .preview-name {
+        grid-area: preview-name;
     }
 </style>
