@@ -7,6 +7,15 @@
     <% end %>
 </div>
 
+<style>
+    #task-view {
+        display: flex;
+        flex-direction: column;
+        padding: 32px;
+        gap: 16px;
+    }
+</style>
+
 <script>
     let toggleTask = (task_id) => {
         fetch(`/task/${task_id}/toggle.json`, {

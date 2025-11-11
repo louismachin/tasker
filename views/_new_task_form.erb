@@ -6,7 +6,7 @@
         <%= erb :_label_input, locals: { id: 'project-field', label: 'Project', options: project_names } %>
         <div class="buttons">
             <%= erb :_push_button, locals: { caption: 'Submit', onclick: 'submitTask()' } %>
-            <%= erb :_nav_button, locals: { caption: 'Cancel', onclick: 'cancelForm()' } %>
+            <%= erb :_push_button, locals: { caption: 'Cancel', onclick: 'cancelForm()' } %>
         </div>
     </div>
 </div>

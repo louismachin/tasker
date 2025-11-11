@@ -1,5 +1,18 @@
 <div id="task-view">
-    <h1>Dash!</h1>
-    <a href="/project/new">New Project</a>
-    <a href="/task/new">New Task</a>
+    <div id="dash-view">
+        <div class="buttons">
+            <%= erb :_push_button, locals: { caption: 'New Project', onclick: 'window.location = \'/project/new\'' } %>
+            <%= erb :_push_button, locals: { caption: 'New Task', onclick: 'window.location = \'/task/new\'' } %>
+        </div>
+    </div>
 </div>
+
+<style>
+    #dash-view {
+        display: flex;
+        flex-direction: column;
+        padding: 32px;
+        gap: 16px;
+        width: 100%;
+    }
+</style>

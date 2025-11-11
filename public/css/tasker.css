@@ -9,22 +9,21 @@
 }
 
 #scroller-tool > div {
-    border: 1px solid black;
+    /* ... */
 }
 
-#task-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 8px;
-    height: calc(500px - 64px);
-    overflow-y: scroll;
+#scroller-tool > div.lightgrey {
+    background: #F5F5F5;
 }
 
-#task-list .task {
-    min-height: 96px;
-    border: 1px solid black;
+#scroller-tool > div.grey {
+    background: #292E37;
 }
+
+#scroller-tool > div.blue {
+    background: #2FB8BA;
+}
+
 
 #task-view {
     background: white;

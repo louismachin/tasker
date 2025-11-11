@@ -1,3 +1,6 @@
-<button class="push" onclick="<%= onclick %>">
-    <span><%= caption %></span>
-</button>
+<div>
+    <% onclick = defined?(onclick) ? onclick : '' %>
+    <button class="push" onclick="<%= onclick %>">
+        <span><%= caption %></span>
+    </button>
+</div>

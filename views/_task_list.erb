@@ -1,9 +1,27 @@
-<div id="task-list">
+<div id="task-list" class="lightgrey">
     <% (@sorted_tasks * 10).each do |task| %>
-        <div class="task">
-            <a href="/task/<%= task.id %>">
-                <%= task.description %>
-            </a>
-        </div>
+        <%= erb :_task_preview, locals: { task: task } %>
     <% end %>
 </div>
+
+<style>
+
+    #task-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px;
+        height: calc(500px - 64px);
+        overflow-y: scroll;
+    }
+
+    #task-list .task-preview {
+        display: flex;
+        min-height: 48px;
+        border: 1px solid black;
+    }
+
+    .task-preview {
+        background: white;
+    }
+</style>
