@@ -1,0 +1,31 @@
+<div id="task-description-wrapper">
+    <div><p class="label">Description</p></div>
+    <div><p class="description"><%= task.description %></p></div>
+</div>
+
+<style>
+    #task-description-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #task-description-wrapper > div {
+        display: flex;
+    }
+
+    #task-description-wrapper p {
+        margin: 0;
+    }
+
+    p.description {
+        background-color: #EEF0F2;
+        padding: 18px;
+        width: 100%;
+    }
+
+    p.label {
+        color: #9999ac;
+        font-size: 0.9rem;
+    }
+</style>

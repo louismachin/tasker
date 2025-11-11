@@ -1,6 +1,6 @@
 <div id="task-view">
-    <p><%= task.description %></p>
     <%= erb :_task_time_spans, locals: { task: task } %>
+    <%= erb :_task_description, locals: { task: task } %>
 </div>
 
 <style>
