@@ -37,14 +37,14 @@ class Task
     end
 
     def save
-        from_times = @time_spans.map { |ts| ts.from }
-        to_times = @time_spans.map { |ts| ts.to }
+        from_times = @time_spans.map { |ts| ts.from.to_s }
+        to_times = @time_spans.map { |ts| ts.to.to_s }
         to_times << nil unless to_times.size == @time_span_count
         @yaml_data = {
             'id' => @id,
             'name' => @name,
             'description' => @description,
-            'created_at' => @created_at,
+            'created_at' => @created_at.to_s,
             'time_span_count' => @time_span_count,
             'from_times' => from_times,
             'to_times' => to_times,

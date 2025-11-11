@@ -1,5 +1,6 @@
 <div id="task-view">
     <%= erb :_push_button, locals: { caption: 'Start/Stop', onclick: "toggleTask('#{task.id}')" }%>
+    <pre><%= task.name %></pre>
     <pre><%= task.description %></pre>
     <pre>Total time spent: <%= task.duration %></pre>
     <% task.time_spans.each do |time_span| %>
