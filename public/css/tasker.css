@@ -6,8 +6,7 @@
     height: 500px;
     grid-template-columns: 3fr 5fr;
     grid-template-rows: 64px 1fr;
-    border: 1px solid black;
-    border-collapse: collapse;
+    overflow: hidden;
 }
 
 #scroller-tool > div {
