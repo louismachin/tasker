@@ -61,5 +61,5 @@ get '/task/:task_id' do
     @sorted_tasks = get_sorted_tasks
     task_id = params[:task_id]
     @task = get_task_by_id(task_id)
-    erb :index, locals: { copy: @copy }
+    erb :task, locals: { copy: @copy }
 end

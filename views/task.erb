@@ -7,9 +7,9 @@
     <div id="wrapper">
         <div id="scroller-tool">
             <%= erb :_task_list_header %>
-            <div id="task-header" class="grey"></div>
+            <%= erb :_task_header, locals: { task: @task } %>
             <%= erb :_task_list, locals: { tasks: @sorted_tasks } %>
-            <%= erb :_new_task_form, locals: { projects: @projects } %>
+            <%= erb :_task_view, locals: { task: @task } %>
         </div>
     </div>
     

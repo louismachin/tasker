@@ -3,7 +3,7 @@ get '/' do
     @copy = $env.default_copy
     @projects = get_all_projects.values
     @sorted_tasks = get_sorted_tasks
-    erb :index, locals: { copy: @copy }
+    erb :dashboard, locals: { copy: @copy }
 end
 
 get '/help' do
