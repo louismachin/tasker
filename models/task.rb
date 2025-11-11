@@ -1,13 +1,15 @@
 class Task
-    attr_reader :id, :description, :time_spans
+    attr_reader :id, :name, :description, :time_spans
 
     def initialize(file_path)
         @id = nil
+        @file_path = file_path
         @time_spans = []
 
         if File.file?(file_path)
             @yaml_data = YAML.load_file(file_path)
             @id = @yaml_data['id'].to_s
+            @name = @yaml_data['name'].to_s
             @description = @yaml_data['description'].to_s
             @created_at = Time.parse(@yaml_data['created_at'])
             @time_span_count = @yaml_data['time_span_count'].to_i
@@ -34,6 +36,22 @@ class Task
         @time_spans.sum { |time_span| time_span.duration }
     end
 
+    def save
+        from_times = @time_spans.map { |ts| ts.from }
+        to_times = @time_spans.map { |ts| ts.to }
+        to_times << nil unless to_times.size == @time_span_count
+        @yaml_data = {
+            'id' => @id,
+            'name' => @name,
+            'description' => @description,
+            'created_at' => @created_at,
+            'time_span_count' => @time_span_count,
+            'from_times' => from_times,
+            'to_times' => to_times,
+        }
+        File.write(@file_path, @yaml_data.to_yaml)
+    end
+
     def toggle
         if @time_spans.any? && @time_spans.last.active?
             # end current latest time span
@@ -41,7 +59,9 @@ class Task
         else
             # create new time span
             @time_spans << TimeSpan.new(Time.now)
+            @time_span_count += 1
         end
+        self.save
         return @time_spans.last
     end
 end
