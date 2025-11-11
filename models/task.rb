@@ -26,6 +26,10 @@ class Task
         end
     end
 
+    def uri_id
+        return self.id.sub('TASK_', '')
+    end
+
     def latest_time # for relevance sorting
         return @created_at if @time_span_count == 0
         times = [@created_at] + @time_spans.map { |ts| [ts.from, ts.to] }

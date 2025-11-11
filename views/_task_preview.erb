@@ -1,5 +1,13 @@
-<div class="task-preview">
-    <a href="/task/<%= task.id %>">
-        <%= task.description %>
-    </a>
+<% preview_dom_id = "preview-#{rand(99999)}" %>
+<div id="<%= preview_dom_id %>" class="task-preview">
+    <span>
+        <p>#<%= task.uri_id %></p>
+        <p><%= task.description %></p>
+    </span>
 </div>
+
+<script>
+    document.getElementById('<%= preview_dom_id %>').onclick = () => {
+        window.location = '/task/<%= task.id %>'
+    }
+</script>

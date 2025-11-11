@@ -14,6 +14,10 @@ class Project
         load_tasks
     end
 
+    def uri_id
+        return self.id.sub('PROJECT_', '')
+    end
+
     def duration
         return @tasks.sum { |task| task.duration }
     end

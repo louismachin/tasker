@@ -1,27 +1,38 @@
 <div id="task-list" class="lightgrey">
+    <p class="task-history">TASK HISTORY</p>
     <% (@sorted_tasks * 10).each do |task| %>
         <%= erb :_task_preview, locals: { task: task } %>
     <% end %>
 </div>
 
 <style>
+    p.task-history {
+        letter-spacing: 1px;
+        color: #9999ac;
+        margin: 0;
+        margin-bottom: 8px;
+        margin-top: 4px;
+        margin-left: 4px;
+        font-size: 0.8rem;
+    }
 
     #task-list {
         display: flex;
         flex-direction: column;
         gap: 8px;
-        padding: 8px;
+        padding: 16px;
         height: calc(500px - 64px);
         overflow-y: scroll;
+        scrollbar-width: none;
     }
 
     #task-list .task-preview {
         display: flex;
-        min-height: 48px;
+        flex-direction: column;
+        height: fit-content;
         border: 1px solid black;
-    }
-
-    .task-preview {
+        border-radius: 4px;
         background: white;
+        cursor: pointer;
     }
 </style>

@@ -24,6 +24,9 @@
     background: #2FB8BA;
 }
 
+#task-list-header {
+    border-right: 1px solid #9999ac;
+}
 
 #task-view {
     background: white;
