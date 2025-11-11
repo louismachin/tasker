@@ -59,3 +59,13 @@ def create_task(project, name, description)
     File.write("./data/#{project.id}/#{task_id}.yml", yaml_data.to_yaml)
     clear_projects_cache
 end
+
+def get_today_duration
+    return get_all_projects.values.sum { |project| project.today_duration }
+end
+
+helpers do
+    def get_today_duration
+        return get_all_projects.values.sum { |project| project.today_duration }
+    end
+end

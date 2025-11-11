@@ -16,6 +16,7 @@ require_relative './models/project'
 require_relative './models/task'
 require_relative './models/time_span'
 
+require_relative './helpers/time'
 require_relative './helpers/projects'
 
 require_relative './routes/session'

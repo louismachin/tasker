@@ -24,9 +24,20 @@ class TimeSpan
         return @to_time != nil
     end
 
+    def today?
+        [@from_time, @to_time].compact.any? { |time| time.today? }
+    end
+
     def duration # in minutes
         to_time = finished? ? self.to : Time.now
         return ((to_time - self.from) / 60).to_i
+    end
+
+    def today_duration # in minutes
+        return 0 unless today?
+        from_time = self.from.today? ? self.from : Time.parse("#{Date.today.to_s} 00:00")
+        to_time = finished? ? self.to : Time.now
+        return ((to_time - from_time) / 60).to_i
     end
 
     def to_json

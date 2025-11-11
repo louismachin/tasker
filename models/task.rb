@@ -36,6 +36,23 @@ class Task
         @time_spans.sum { |time_span| time_span.duration }
     end
 
+    def today_duration
+        @time_spans.sum { |time_span| time_span.today_duration }
+    end
+
+    def toggle
+        if @time_spans.any? && @time_spans.last.active?
+            # end current latest time span
+            @time_spans.last.end
+        else
+            # create new time span
+            @time_spans << TimeSpan.new(Time.now)
+            @time_span_count += 1
+        end
+        self.save
+        return @time_spans.last
+    end
+
     def save
         from_times = @time_spans.map { |ts| ts.from.to_s }
         to_times = @time_spans.map { |ts| ts.to.to_s }
@@ -50,18 +67,5 @@ class Task
             'to_times' => to_times,
         }
         File.write(@file_path, @yaml_data.to_yaml)
-    end
-
-    def toggle
-        if @time_spans.any? && @time_spans.last.active?
-            # end current latest time span
-            @time_spans.last.end
-        else
-            # create new time span
-            @time_spans << TimeSpan.new(Time.now)
-            @time_span_count += 1
-        end
-        self.save
-        return @time_spans.last
     end
 end

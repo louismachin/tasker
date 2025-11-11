@@ -14,6 +14,14 @@ class Project
         load_tasks
     end
 
+    def duration
+        return @tasks.sum { |task| task.duration }
+    end
+
+    def today_duration
+        return @tasks.sum { |task| task.today_duration }
+    end
+
     def load_tasks
         @tasks = []
         for file_path in Dir["./data/#{self.id}/*.yml"] do

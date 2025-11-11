@@ -1,5 +1,6 @@
 <div id="task-view">
     <div id="dash-view">
+        <h2><%= formatted_minutes(get_today_duration) %></h2>
         <div class="buttons">
             <%= erb :_push_button, locals: { caption: 'New Project', onclick: 'window.location = \'/project/new\'' } %>
             <%= erb :_push_button, locals: { caption: 'New Task', onclick: 'window.location = \'/task/new\'' } %>
