@@ -3,12 +3,12 @@
 ## Service
 
 ```
-sudo ln -s /opt/louismachin.com/louismachin.service /etc/systemd/system/louismachin.service
+sudo ln -s /opt/tasker/tasker.service /etc/systemd/system/tasker.service
 sudo systemctl daemon-reload
-sudo systemctl enable louismachin.service
-sudo systemctl start louismachin.service
+sudo systemctl enable tasker.service
+sudo systemctl start tasker.service
 
 
-sudo journalctl -u louismachin.service -n 50
-sudo journalctl -u louismachin.service -f
+sudo journalctl -u tasker.service -n 50
+sudo journalctl -u tasker.service -f
 ```
