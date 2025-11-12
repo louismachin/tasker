@@ -1,3 +1,5 @@
-environment.yml
-data
-dev
+servier/environment.yml
+server/data
+server/dev
+client/node_modules
+client/src-tauri/target
