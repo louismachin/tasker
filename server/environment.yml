@@ -1,0 +1,17 @@
+port:
+  4595
+title:
+  Tasker
+licensee:
+  Shukra Software Ltd.
+cookie_name:
+  _tasker_shukra
+xauth_agent:
+  _tasker_shukra
+users:
+  test:
+    password:
+      'test'
+    api_keys:
+      - '123'
+      - '456'
