@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=louis
-WorkingDirectory=/opt/tasker
+WorkingDirectory=/opt/tasker/server
 ExecStart=/usr/bin/rake run
 Restart=always
 RestartSec=10
