@@ -66,6 +66,60 @@ class Environment
     def cookie_user(cookie)
         @given_tokens[cookie]
     end
+
+    # xauth methods
+
+    def build_user(username)
+        User.new(username)
+    end
+
+    def uses_xauth?
+        @data.include?('xauth_agent')
+    end
+
+    def xauth_cookie_name
+        begin
+            body = simple_get_body('https://xauth.shukra.dev/api/cookie_name.json')
+            puts "xauth_cookie_name\tbody=#{body}"
+            return body['cookie_name']
+        rescue
+            return nil
+        end
+    end
+
+    def check_xauth_attempt(attempt) # [user, token]
+        username, password = attempt[:username], attempt[:password]
+        base_uri = 'https://xauth.shukra.dev/api/login.json'
+        body = { username: username, password: password, }
+        response = simple_post_json(base_uri, {}, body)
+        puts "check_xauth_attempt\t#{response.body}"
+        if response.code == '200'
+            body = JSON.parse(response.body)
+            username = body['username']
+            token = body['token']
+            user = build_user(username)
+            return user, token
+        else
+            return nil
+        end
+        return nil
+    end
+
+    def check_xauth_cookie(cookie)
+        base_uri = 'https://xauth.shukra.dev/api/validate.json'
+        response = simple_post_json(base_uri, {}, { token: cookie, })
+        puts "check_xauth_cookie\t#{response.body}"
+        if response.code == '200'
+            body = JSON.parse(response.body)
+            username = body['username']
+            token = body['token']
+            user = build_user(username)
+            return user, token
+        else
+            return nil
+        end
+        return nil
+    end
 end
 
 $env = Environment.new

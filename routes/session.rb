@@ -1,17 +1,36 @@
 helpers do
+    def apply_xauth_token(token)
+        response.set_cookie($env.xauth_cookie_name, value: token, path: '/', max_age: '3600')
+    end
+
     def is_valid_attempt?(attempt)
-        return $env.check_attempt(attempt)
+        unless $env.uses_xauth?
+            return $env.check_attempt(attempt)
+        else
+            user, token = $env.check_xauth_attempt(attempt)
+            return false if user == nil
+            apply_xauth_token(token)
+            return true
+        end
     end
 
     def is_logged_in?
-        cookie = request.cookies[$env.cookie_name]
-        api_key = params['api_key']
-        if api_key
-            $env.check_api_key(api_key)
-        elsif cookie
-            $env.check_cookie(cookie)
+        unless $env.uses_xauth?
+            cookie = request.cookies[$env.cookie_name]
+            api_key = params['api_key']
+            if api_key
+                $env.check_api_key(api_key)
+            elsif cookie
+                $env.check_cookie(cookie)
+            else
+                false
+            end
         else
-            false
+            xauth_cookie = request.cookies[$env.xauth_cookie_name]
+            user, token = $env.check_xauth_cookie(xauth_cookie)
+            return false if user == nil
+            apply_xauth_token(token)
+            return true
         end
     end
 
