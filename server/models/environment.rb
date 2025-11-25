@@ -106,6 +106,7 @@ class Environment
     end
 
     def check_xauth_cookie(cookie)
+        puts "check_xauth_cookie\tcookie=#{cookie}"
         base_uri = 'https://xauth.shukra.dev/api/validate.json'
         response = simple_post_json(base_uri, {}, { token: cookie, })
         puts "check_xauth_cookie\t#{response.body}"

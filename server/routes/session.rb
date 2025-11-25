@@ -26,6 +26,7 @@ helpers do
                 false
             end
         else
+            puts "is_logged_in?\trequest.cookies=#{request.cookies}"
             xauth_cookie = request.cookies[$env.xauth_cookie_name]
             user, token = $env.check_xauth_cookie(xauth_cookie)
             return false if user == nil
